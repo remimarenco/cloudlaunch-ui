@@ -1,10 +1,30 @@
-<h1>{{ title }}</h1>
-
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 
 <div class="list-group">
     <sebm-google-map [zoom]="zoom" [latitude]="center_latitude" [longitude]="center_longitude" [styles]="styles">
-        <sebm-google-map-marker *ngFor="let svc of public_services" [latitude]="svc.location?.latitude" [longitude]="svc.location?.longitude"></sebm-google-map-marker>
+        <sebm-google-map-marker *ngFor="let svc of public_services" [latitude]="svc.location?.latitude" [longitude]="svc.location?.longitude">
+            <sebm-google-map-info-window [disableAutoPan]="true">
+                    <div class="col-md-2 row-picture">
+                        <img class="circle" src="{{ svc.logo }}" alt="Logo">
+                    </div>
+                    <div class="col-md-9 row-content col-md-offset-1">
+                        <h4 class="list-group-item-heading"><a href="{{ svc.links }}" class="btn-link"> {{ svc.name }}</a></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="list-group-item-text text-muted">Location: {{ svc.location?.city }}, {{ svc.location?.country?.name }}</p>
+                        <p class="list-group-item-text text-muted">Support: <a href="{{ svc.email_user_support }}" class="btn-link"> {{ svc.email_user_support }}</a></p>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <p class="list-group-item-text">{{ svc.purpose }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <p class="list-group-item-text text-muted">Quotas: {{ svc.quotas }}</p>
+                    </div>
+                </div>
+            </sebm-google-map-info-window>
+        </sebm-google-map-marker>
     </sebm-google-map>
 </div>

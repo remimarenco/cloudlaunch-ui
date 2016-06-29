@@ -68,6 +68,9 @@ target/
 !systemjs.config.js
 !app/angular-cli-build.js
 
+.idea/
+typings
+
 # Local system files
 .DS_Store
 *.sublime-project
